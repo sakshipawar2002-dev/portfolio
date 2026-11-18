@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakshi Pawar — Software Engineer & Developer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#090d16'
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            violet: '#6d28d9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    SP
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Sakshi Pawar</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Software Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions: Theme Toggle & Resume Button -->
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-0.5">
+                    <span>Let's Talk</span>
+                    <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Open Mobile Menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-slate-200 dark:border-slate-800 px-6 py-4 space-y-3">
+            <a href="#about" class="block font-medium text-slate-700 dark:text-slate-200 py-1.5 mobile-link">About</a>
+            <a href="#skills" class="block font-medium text-slate-700 dark:text-slate-200 py-1.5 mobile-link">Skills</a>
+            <a href="#projects" class="block font-medium text-slate-700 dark:text-slate-200 py-1.5 mobile-link">Projects</a>
+            <a href="#experience" class="block font-medium text-slate-700 dark:text-slate-200 py-1.5 mobile-link">Experience</a>
+            <a href="#contact" class="block font-medium text-slate-700 dark:text-slate-200 py-1.5 mobile-link">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+            <!-- Background Gradients & Glows -->
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-navy-900/80 border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-semibold mb-6 shadow-sm animate-fade-in">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+                    <span>Software Engineer & Problem Solver</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
+                    Hi, I'm <span class="gradient-text">Sakshi Pawar</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Passionate software engineer specializing in robust backend architectures, React.js frontends, Python automation, and Machine Learning workflows. I build clean, efficient, and scalable software solutions.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3">
+                        <span>Explore My Work</span>
+                        <i class="fa-solid fa-code"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-slate-700 dark:text-slate-200 glass-card hover:bg-slate-100 dark:hover:bg-slate-800 transition-all flex items-center justify-center space-x-3">
+                        <span>Get in Touch</span>
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+
+                <!-- Social Quicklinks -->
+                <div class="mt-12 flex items-center justify-center space-x-6 text-slate-500 dark:text-slate-400">
+                    <a href="https://github.com" target="_blank" rel="noopener" class="p-3 rounded-xl glass-card hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-all">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="p-3 rounded-xl glass-card hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-all">
+                        <i class="fa-brands fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="mailto:sakshi.pawar.dev@example.com" class="p-3 rounded-xl glass-card hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-all">
+                        <i class="fa-solid fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">About Me</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Get to know more about my background, passion, and engineering philosophy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Bio card -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="glass-card p-8 rounded-2xl shadow-sm space-y-4">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center space-x-3">
+                            <i class="fa-solid fa-user-graduate text-blue-600 dark:text-blue-400"></i>
+                            <span>Dedicated Software Engineer</span>
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            I am a detail-oriented software engineer with a strong foundation in Object-Oriented Programming principles, algorithms, and clean system design. My core expertise lies in designing robust backend systems using Python, FastAPI, and PostgreSQL, alongside crafting responsive, high-performance interfaces with React.js and TypeScript.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Beyond standard web development, I am deeply fascinated by Machine Learning and Natural Language Processing. I have hands-on experience integrating state-of-the-art models like BERT, DistilBERT, and XGBoost into practical analytical applications, bridging the gap between rigorous data science and user-centric software.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick Highlights Grid -->
+                <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center hover:border-blue-500/50 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Clean Code & OOP</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Modular, maintainable, and robust architectural patterns.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center hover:border-purple-500/50 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Machine Learning</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Practical AI integration using BERT, XGBoost, and Python.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center hover:border-blue-500/50 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Backend & APIs</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">FastAPI, PostgreSQL, Dockerized container deployment.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center hover:border-purple-500/50 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Modern Frontend</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">React.js, TypeScript, Tailwind CSS, responsive UX.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-slate-100/50 dark:bg-navy-900/30 rounded-3xl my-12 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Technical Skills</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Core technologies, languages, and tools I use to bring ideas to life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Category 1: Languages & OOP -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                            <i class="fa-solid fa-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Languages & OOP</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Python</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">TypeScript</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">JavaScript</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">C++ / C</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Object-Oriented Design</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Data Structures & Algos</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 2: Frontend Development -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                            <i class="fa-solid fa-window-maximize text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Frontend Tech</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">React.js</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">HTML5 & CSS3</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Tailwind CSS</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Responsive Web Design</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">UI / UX Principles</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 3: Backend & Databases -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                            <i class="fa-solid fa-database text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Backend & Databases</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">FastAPI</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">PostgreSQL</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">RESTful APIs</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">SQL & Queries</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 4: Machine Learning & AI -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                            <i class="fa-solid fa-network-wired text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Machine Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">BERT & DistilBERT</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">XGBoost</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Data Analytics Dashboards</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Scikit-Learn</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 5: DevOps & Tools -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                            <i class="fa-solid fa-toolbox text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">DevOps & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Docker</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Git & GitHub</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Linux / Shell</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Postman</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 6: Software Engineering -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                            <i class="fa-solid fa-diagram-project text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Methodologies</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">SRS Documentation</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Agile Workflow</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">Unit Testing</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-semibold">System Architecture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Featured Projects</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Explore my key software engineering projects, systems, and prototypes.</p>
+
+                <!-- Project Filters -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all" data-filter="all">All Projects</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all" data-filter="systems">Systems & C/C++</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all" data-filter="web">Full Stack & SRS</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all" data-filter="ml">Data & ML</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Food Management System -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="web">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-blue-600/25 to-purple-600/25 relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+                            <i class="fa-solid fa-utensils text-5xl text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-700 dark:text-blue-300 backdrop-blur-md">Full Stack</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Food Management System</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Comprehensive Software Requirement Specification (SRS) & prototype for optimized inventory tracking, order dispatch, and user workflows.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">SRS</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">Python</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">FastAPI</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50 mt-4">
+                        <button onclick="openModal('food')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center space-x-1.5 pt-4">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-500 hover:text-slate-800 dark:hover:text-white pt-4">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Railways Route Planner System -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="systems">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-purple-600/25 to-indigo-600/25 relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+                            <i class="fa-solid fa-train text-5xl text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-700 dark:text-purple-300 backdrop-blur-md">Systems & OOP</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Railways Route Planner</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                High-performance C/C++ route calculation engine implementing advanced graph algorithms for optimal train scheduling and shortest path routing.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">C / C++</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">OOP</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">Graph Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50 mt-4">
+                        <button onclick="openModal('railway')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center space-x-1.5 pt-4">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-500 hover:text-slate-800 dark:hover:text-white pt-4">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Data & ML Analytics Dashboard -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="ml">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-blue-600/25 to-indigo-600/25 relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+                            <i class="fa-solid fa-chart-line text-5xl text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 backdrop-blur-md">Machine Learning</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">ML Analytics Dashboard</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Interactive analytical dashboard powered by BERT, DistilBERT, and XGBoost models for predictive insights and text classification.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">BERT</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">XGBoost</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">Python</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-slate-800 text-[11px] font-medium">React</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50 mt-4">
+                        <button onclick="openModal('ml')" class="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center space-x-1.5 pt-4">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-500 hover:text-slate-800 dark:hover:text-white pt-4">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-slate-100/50 dark:bg-navy-900/30 rounded-3xl my-12 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Experience & Education</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">My academic background and professional journey in software engineering.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Experience Timeline -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold flex items-center space-x-3 mb-6">
+                        <i class="fa-solid fa-briefcase text-blue-600 dark:text-blue-400"></i>
+                        <span>Professional Experience</span>
+                    </h3>
+
+                    <div class="relative pl-6 border-l-2 border-blue-500/30 space-y-8">
+                        <!-- Experience Item 1 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-600 ring-4 ring-slate-100 dark:ring-navy-950"></span>
+                            <div class="glass-card p-6 rounded-2xl shadow-sm space-y-2">
+                                <span class="text-xs font-semibold text-blue-600 dark:text-blue-400">2025 – Present</span>
+                                <h4 class="text-lg font-bold">Software Engineering Intern</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tech Solutions Inc.</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 pt-2">
+                                    Developing RESTful APIs using FastAPI and PostgreSQL, building responsive UI components in React.js, and containerizing microservices with Docker.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item 2 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-purple-600 ring-4 ring-slate-100 dark:ring-navy-950"></span>
+                            <div class="glass-card p-6 rounded-2xl shadow-sm space-y-2">
+                                <span class="text-xs font-semibold text-purple-600 dark:text-purple-400">2024 – 2025</span>
+                                <h4 class="text-lg font-bold">Machine Learning & Data Analyst Project Lead</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">University Research Cell</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 pt-2">
+                                    Led a team of developers in building analytical dashboards and integrating BERT models for automated text categorization and sentiment analytics.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Timeline -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold flex items-center space-x-3 mb-6">
+                        <i class="fa-solid fa-graduation-cap text-purple-600 dark:text-purple-400"></i>
+                        <span>Education</span>
+                    </h3>
+
+                    <div class="relative pl-6 border-l-2 border-purple-500/30 space-y-8">
+                        <!-- Education Item 1 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-purple-600 ring-4 ring-slate-100 dark:ring-navy-950"></span>
+                            <div class="glass-card p-6 rounded-2xl shadow-sm space-y-2">
+                                <span class="text-xs font-semibold text-purple-600 dark:text-purple-400">2022 – 2026 (Expected)</span>
+                                <h4 class="text-lg font-bold">B.Tech in Computer Science & Engineering</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Engineering Institute</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 pt-2">
+                                    Focused on Object-Oriented Programming, Data Structures, Algorithms, Database Management Systems, and Machine Learning.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Education Item 2 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-600 ring-4 ring-slate-100 dark:ring-navy-950"></span>
+                            <div class="glass-card p-6 rounded-2xl shadow-sm space-y-2">
+                                <span class="text-xs font-semibold text-blue-600 dark:text-blue-400">2020 – 2022</span>
+                                <h4 class="text-lg font-bold">Higher Secondary Education (Science & Mathematics)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Senior Secondary School</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 pt-2">
+                                    Graduated with distinction with a strong focus on advanced mathematics, computer science fundamentals, and logical problem solving.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Get In Touch</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Have an exciting opportunity, project proposal, or just want to connect? Send me a message!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Contact Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Email Me</h4>
+                            <a href="mailto:sakshi.pawar.dev@example.com" class="font-bold text-slate-800 dark:text-white hover:text-blue-600 transition-colors">sakshi.pawar.dev@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Location</h4>
+                            <p class="font-bold text-slate-800 dark:text-white">India (Open to Remote / Global)</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">Profiles</h4>
+                            <div class="flex space-x-3 mt-1">
+                                <a href="https://github.com" target="_blank" rel="noopener" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 font-semibold text-sm">GitHub</a>
+                                <span class="text-slate-400">•</span>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 font-semibold text-sm">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="glass-card p-8 rounded-2xl shadow-sm space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 text-slate-800 dark:text-white transition-colors" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Your Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 text-slate-800 dark:text-white transition-colors" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="subject" class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Subject</label>
+                            <input type="text" id="subject" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 text-slate-800 dark:text-white transition-colors" placeholder="Project Discussion / Job Opportunity">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="message" class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Message</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 text-slate-800 dark:text-white transition-colors resize-none" placeholder="Write your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-card border-t border-slate-200 dark:border-slate-800 py-10 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                    SP
+                </div>
+                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">© 2026 Sakshi Pawar. All rights reserved.</span>
+            </div>
+            <div class="flex space-x-6 text-sm text-slate-500 dark:text-slate-400">
+                <a href="#about" class="hover:text-blue-600 transition-colors">About</a>
+                <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm hidden">
+        <div class="glass-card max-w-2xl w-full p-8 rounded-3xl shadow-2xl relative space-y-6 border border-slate-200 dark:border-slate-700 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div id="modal-content" class="space-y-4 pt-2">
+                <!-- Dynamically populated content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center space-x-3 border-l-4 border-emerald-500 transform translate-y-28 opacity-0 transition-all duration-300">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+            <i class="fa-solid fa-check font-bold"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-sm">Message Sent Successfully!</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Thank you for reaching out. I'll get back to you soon.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved user preference or system default (default to light as requested)
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            htmlElement.classList.remove('dark');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Projects Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button styles
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                });
+                btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                btn.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Content Data
+        const projectData = {
+            food: {
+                title: "Food Management System SRS & Prototype",
+                category: "Full Stack Web & SRS",
+                description: "A comprehensive Software Requirement Specification (SRS) document paired with a functional prototype designed to streamline restaurant inventory tracking, automated supply chain requests, and order dispatch pipelines.",
+                features: [
+                    "Detailed Use Case Models and SRS documentation adhering to IEEE standards",
+                    "FastAPI asynchronous backend endpoints for high-throughput order processing",
+                    "PostgreSQL relational database schema with optimized indexing for inventory queries",
+                    "Responsive React frontend for staff dashboard and real-time status monitoring"
+                ],
+                tech: ["Python", "FastAPI", "PostgreSQL", "React.js", "Docker", "SRS Documentation"]
+            },
+            railway: {
+                title: "Railways Route Planner System",
+                category: "Systems & C/C++",
+                description: "A high-performance route calculation system built in C and C++ implementing advanced graph data structures and shortest-path algorithms to compute optimal train scheduling and connection routes.",
+                features: [
+                    "Object-Oriented C++ architecture implementing modular class hierarchies for stations, trains, and schedules",
+                    "Custom graph algorithms for rapid pathfinding and fare calculation",
+                    "Optimized memory management for large-scale railway network graphs",
+                    "Command-line interface with interactive route querying and schedule debugging"
+                ],
+                tech: ["C / C++", "Object-Oriented Programming", "Graph Theory", "Data Structures", "Algorithms"]
+            },
+            ml: {
+                title: "Data & ML Analytics Dashboards",
+                category: "Machine Learning & Analytics",
+                description: "An advanced data analytics dashboard integrated with state-of-the-art transformer models (BERT & DistilBERT) and XGBoost regression to deliver predictive business intelligence and text classification.",
+                features: [
+                    "NLP pipeline utilizing fine-tuned BERT and DistilBERT for sentiment extraction",
+                    "XGBoost classification models for high-accuracy predictive data metrics",
+                    "Interactive React analytics dashboard with dynamic visual charts",
+                    "Dockerized deployment pipeline for reproducible model inference"
+                ],
+                tech: ["Python", "BERT", "DistilBERT", "XGBoost", "React.js", "Docker", "Pandas & Scikit-Learn"]
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            modalContent.innerHTML = `
+                <div class="space-y-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-700 dark:text-blue-300">${data.category}</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white pt-2">${data.title}</h3>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">${data.description}</p>
+                <div class="space-y-3 pt-2">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-slate-700 dark:text-slate-300">Key Features & Architecture</h4>
+                    <ul class="list-disc list-inside space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+                        ${data.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="space-y-3 pt-2">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-slate-700 dark:text-slate-300">Technologies Used</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.tech.map(t => `<span class="px-3 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-xs font-semibold">${t}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="pt-4 flex justify-end">
+                    <a href="https://github.com" target="_blank" rel="noopener" class="px-6 py-2.5 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                        <span>View Repository</span>
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Contact Form Submission & Success Toast
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            // Simulate form submission
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-28', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            document.getElementById('contact-form').reset();
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-28', 'opacity-0');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
